@@ -1,19 +1,29 @@
-import GridItem from "../GridItem/GridItem";
+import type { Photo } from "../../types/photo";
+import type { MouseEvent } from "react";
 
 import styles from "./PhotosGalleryItem.module.css";
 
-export default function PhotosGalleryItem() {
+interface PhotosGalleryItemProps {
+  photo: Photo;
+  onPhotoClick: (photo: Photo) => void;
+}
+
+export default function PhotosGalleryItem({ photo, onPhotoClick }: PhotosGalleryItemProps) {
+  const handleClick = (e: MouseEvent<HTMLDivElement>): void => {
+    e.preventDefault();
+    onPhotoClick(photo);
+  };
+
   return (
-    <GridItem>
       <div
+        onClick={handleClick}
         className={styles.thumb}
         style={{
-          backgroundColor: "avg_color",
-          borderColor: "avg_color",
+          backgroundColor: photo.avg_color,
+          borderColor: photo.avg_color,
         }}
       >
-        <img src="" alt="" />
+        <img src={photo.src.large} alt={photo.alt} />
       </div>
-    </GridItem>
   );
 }
