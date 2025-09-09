@@ -10,10 +10,6 @@ interface PhotosGalleryProps {
 
 export default function PhotosGallery({ photos, onPhotoClick }: PhotosGalleryProps) {
 
-  if(photos.length === 0) {
-  return null;
-}
-
 return (
   <Grid>
   {photos.map((photo) => (
